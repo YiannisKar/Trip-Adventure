@@ -1,6 +1,6 @@
-jQuery(document).ready(init);
+jQuery(init);
 
-function init(){
+function init($){
 
     console.log("ready");
 }
