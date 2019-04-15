@@ -18,7 +18,7 @@
 
 <body>
     <div class="container mt-5">
-          <section class="row searchbar  pt-1">
+        <section class="row searchbar  pt-1">
 
             <div class="col-12">
                  
@@ -28,13 +28,19 @@
                     <div class="input-group-prepend">
 
                         <span class="input-group-text bg-white">
-                            <i class="fas fa-search text-black-50">
-                            
+                            <i class="fas fa-search text-black-50"></i>
+
                         </span>
-                    </i>
+                        
                     </div>
 
-                    <input type="text" class="form-control border-left-0" aria-label="Location">
+                    <input list="cities-list" class="form-control border-0" id="cities" name="cities" aria-label="Location"/>
+
+                    <datalist id="cities-list">
+                      <option value="Toulouse"></option>
+                      <option value="Paris"></option>
+                      <option value="Marseille"></option>
+                    </datalist>
 
                     <div class="input-group-append">
 
