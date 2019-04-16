@@ -1,109 +1,123 @@
 jQuery(document).ready(init);
- 
+
 
 //Same as: jQuery(document).ready(init);
- 
+
 
 //Our application goes here:
 
 function init() {
 
- let options = {
+  let options = {
 
- url: "data.json",
+    url: "data.json",
 
- success: jsonHandler
+    success: jsonHandler
 
- }
- 
+  }
 
- function removeDups(names) {
 
- let unique = {};
+  function removeDups(names) {
 
- names.forEach(function (i) {
+    let unique = {};
 
- if (!unique[i]) { unique[i] = true; }
+    names.forEach(function (i) {
 
- });
+      if (!unique[i]) { unique[i] = true; }
 
- return Object.keys(unique);
+    });
 
- }
- 
+    return Object.keys(unique);
 
- function showOptions(listOfCities){
+  }
 
- //1)get datalist
 
- let datalist = document.querySelector("#cities");
+  function showOptions(listOfCities) {
 
- console.log(datalist); //Testing
- 
+    //1)get datalist
 
- //2)loop over unique cities array
+    let datalist = document.querySelector("#cities");
 
- listOfCities.map(addOption);
- 
+    console.log(datalist); //Testing
 
- 
 
- function addOption(city){
+    //2)loop over unique cities array
 
- let option = `<option value="${city}"></option>` 
+    listOfCities.map(addOption);
 
- datalist.innerHTML += option;
 
- }
- 
 
- // 2.1)Inside Loop:
 
- // --Create option element
+    function addOption(city) {
 
- // --Add city value
+      let option = `<option value="${city}"></option>`
 
- // --Add to datalist(innerHTML)
+      datalist.innerHTML += option;
 
- }
- 
+    }
 
- function jsonHandler(data) {
- 
 
- function getCity(hotel) {
+    // 2.1)Inside Loop:
 
- return hotel.city;
+    // --Create option element
 
- //console.log(hotel.city);
+    // --Add city value
 
- }
- 
+    // --Add to datalist(innerHTML)
 
- let entries = data[1].entries;
+  }
 
- let cities = entries.map(getCity);
 
- let uniqueCities = removeDups(cities);
- 
+  function jsonHandler(data) {
 
- //console.log(entries); //Array [ {HOTEL} x 4 ]
- 
 
- // console.log(uniqueCities);
+    function getCity(hotel) {
 
- showOptions(uniqueCities);
- 
+      return hotel.city;
 
- 
+      //console.log(hotel.city);
 
- }
- 
+    }
 
- $.ajax(options);
 
-}
- 
+    let entries = data[1].entries;
+
+    let cities = entries.map(getCity);
+
+    let uniqueCities = removeDups(cities);
+
+
+    //console.log(entries); //Array [ {HOTEL} x 4 ]
+
+
+    // console.log(uniqueCities);
+
+    showOptions(uniqueCities);
+
+
+
+
+  }
+
+   let citiesInput = document.querySelector("#cities");
+
+   citiesInput.addEventListener("keydown",handleCityInput);
+
+   function handleCityInput(e){
+
+    if(e.keyCode === 13){
+
+      console.log("Get hotels from city...");
+
+      let selectedCity = this.value;
+      console.log("Selected city: ",selectedCity);
+
+    }
+   }
+
+  $.ajax(options);
+  }
+
 
 //Alternative,no global vars at all:
 
